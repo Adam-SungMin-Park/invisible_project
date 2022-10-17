@@ -91,8 +91,7 @@ public class JwtFilter extends OncePerRequestFilter {
         // 검증용 서비스 메소드(validateToken)를 만들어야함(Provider에 있다) + authentication 가져오는 getter 만들어야함.
         if (StringUtils.hasText(jwt) && tokenProvider.validateToken(jwt)) {
             Authentication authentication = tokenProvider.getAuthentication(jwt);
-            // 인증용 데이터를 바꾸려면 Provider에 authentication 필드를 뭐로 설정하냐에 달렸다는 걸 알 수 있음
-            // 참고로 Security가 자체적으로 사용하는 Provider도 있다.
+            // authentication에는 UsernamePasswordAuthenticationToken(memberDetails, null, memberDetails.getAuthorities())이 담기게 됨
             // jwt가 빈 "" 값이나 null 값이 아닌지 str이 포함되어 있는지 삼중 확인하고 유효성 검사도 거쳤으니
             // 그걸 인증용 authentication에 담아주었다. 이제 이걸 SecurityContextHolder에 넣어준다.
             SecurityContextHolder.getContext().setAuthentication(authentication);

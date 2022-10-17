@@ -7,13 +7,24 @@ import lombok.Getter;
 @AllArgsConstructor
 public class ResponseDto<T> {
 
-    // 우선 다 갖다 넣을수있는 Dto.
+    private boolean success;
     private T data;
-    private Boolean success;
     private Error error;
 
-    public static <T> ResponseDto<T> success(T data){
-        return new ResponseDto<>(data,true,null);
+    // 제너릭 메소드
+    public static <T> ResponseDto<T> success(T data) {
+        return new ResponseDto<>(true, data, null);
     }
 
+    public static <T> ResponseDto<T> fail(String code, String msg) {
+        return new ResponseDto<>(false, null, new Error(code, msg));
+    }
+
+    @Getter
+    @AllArgsConstructor
+    static class Error {
+        private String code;
+        private String msg;
+    }
 }
+

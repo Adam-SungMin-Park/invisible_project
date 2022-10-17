@@ -1,7 +1,7 @@
 package com.sparta.invisible_project.security;
 
 import com.sparta.invisible_project.dto.TokenDto;
-import com.sparta.invisible_project.model.Members;
+import com.sparta.invisible_project.model.Member;
 import com.sparta.invisible_project.repository.MemberRepository;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
@@ -9,14 +9,12 @@ import io.jsonwebtoken.security.Keys;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
-import javax.swing.*;
 import java.security.Key;
 import java.util.Date;
 import java.util.stream.Collectors;
@@ -121,7 +119,8 @@ public class TokenProvider {
                         .stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.joining(","));
-        // Java stream & Java 8 에서 추가된 이중콜론:: 사용법에 대한 이해가 필요하다
+        // 인증 정보에서 권한들 꺼내와서 스트림으로 만든담에 (GrantedAuthority.s)-> s.getAuthority() 로 변형
+        // authorities 문자열에 , 로 나눠담음
 
         long nowTime = new Date().getTime();
 
@@ -204,15 +203,15 @@ public class TokenProvider {
 
         // UserDetails 인터페이스의 구현명세를 친절하게 구현한 User를 안쓰고 굳이 Members를 사용하기로 했기 때문에 확실히 다 바꿔줘야함
         // (심지어 빌더 패턴으로 유저 계정 정지, 조회, 잠금, 비밀번호 암호화(PasswordEncoding)까지 전부 구현되어있음. 노션 자료의 의도를 알 수가 없다)
-        String member_name = claims.getSubject();
+        String username = claims.getSubject();
         // Controller 보다 훨씬 앞선 필터 최전선에서 Transaction이 일어나고 있는데 이게 맞나 싶기도
-        Members member = memberRepository.findByMembers_name(member_name)
-                .orElseThrow(() -> new UsernameNotFoundException("Can't find " + member_name ));
+        Member member = memberRepository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("Can't find " + username ));
         // AccessToken PAYLOAD에서 가져온 이름과 DB에서 가져온 멤버 이름이 일치하면
         MemberDetails memberDetails = new MemberDetails(member);
         // Security의 UsernamePasswordAuthenticationToken이 구현 명세로 인정하는(Object principal) UserDetails 인터페이스의 양식에 맞춰
         return new UsernamePasswordAuthenticationToken(memberDetails, null, memberDetails.getAuthorities());
-        // MemberDetails 객체로 만들어서 Authentication 리턴
+        // MemberDetails 객체로 만들어서 Security 인증용 Authentication 리턴
     }
 
 

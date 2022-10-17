@@ -1,7 +1,7 @@
 package com.sparta.invisible_project.security;
 
 import com.sparta.invisible_project.model.Authority;
-import com.sparta.invisible_project.model.Members;
+import com.sparta.invisible_project.model.Member;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,24 +11,24 @@ import java.util.Collection;
 
 public class MemberDetails implements UserDetails {
 
-    private final Members member;
+    private final Member member;
 
-    public MemberDetails(Members member) {
+    public MemberDetails(Member member) {
         this.member = member;
     }
 
-    public Members getMembers() {
+    public Member getMember() {
         return member;
     }
 
     @Override
     public String getPassword() {
-        return member.getMembers_password();
+        return member.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return member.getMembers_name();
+        return member.getUsername();
     }
 
     @Override

@@ -1,0 +1,58 @@
+GET http://localhost:8090/api/issue/token
+Accept: application/json
+Refresh_Token:
+
+###
+POST http://localhost:8090/api/account/login
+Content-Type: application/json
+
+{
+  "email": "wonbin@mail.com",
+  "password": "bin1234"
+}
+
+###
+POST http://localhost:8090/api/account/signup
+Content-Type: application/json
+
+{
+  "username": "wonbin@mail.com",
+  "password": "bin1234"
+}
+
+###
+POST http://localhost:8090/api/save/course
+Content-Type: application/json
+Access_Token:
+
+{
+  "title": "Spring Basic CRUD API",
+  "instructors": "최원빈 튜터",
+  "cost": 77777
+}
+
+###
+GET http://localhost:8090/api/get/courses
+Accept: application/json
+Access_Token:
+
+###
+GET http://localhost:8090/api/get/course/9
+Accept: application/json
+Access_Token:
+
+###
+PUT http://localhost:8090/api/update/course/9
+Content-Type: application/json
+Access_Token:
+
+{
+  "title": "JPA"
+}
+
+###
+DELETE http://localhost:8090/api/delete/course/9
+Accept: application/json
+Access_Token:
+
+###

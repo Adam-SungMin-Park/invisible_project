@@ -25,17 +25,17 @@ public class WebSecurityConfig {
     private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
     private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
 
-    //  DB 비밀번호 암호화용 안하면 범죄자 됨
+    //  DB 비밀번호 암호화용
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-    //  h2 database 접속할 수 있게
+    //  h2 database 접속용
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
         return (web)->web.ignoring()
-                .antMatchers("/h2-console/**");
+                .antMatchers("/h2-console/**", "/favicon.ico");
     }
 
     @Bean
@@ -87,7 +87,7 @@ public class WebSecurityConfig {
                 .authenticated()
                 .anyRequest()
                 .permitAll()
-                // /api/auth/ 경로로 오는 모든 인가 요청들 전부 인증처리, 무슨 요청이 오든 진입 허가
+                // /api/auth/**로 오는 권한 인가 요청만 제외 확인, 인증처리, 그 외에는 무슨 요청이 오든 permitAll.
 
                 //  jwtFilter를 jwt 커스텀 설정을 만들어 UsernamePasswordAuthenticationFilter 보다 앞으로 오게 배치
                 .and()
