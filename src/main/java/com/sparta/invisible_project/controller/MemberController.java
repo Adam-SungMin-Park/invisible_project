@@ -1,37 +1,21 @@
-package com.sparta.invisible_project.controller;
+package com.sparta.invisible_project.Controller;
 
-import com.sparta.invisible_project.dto.*;
-import com.sparta.invisible_project.service.MemberService;
+import com.sparta.invisible_project.Service.MemberService;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
+import org.springframework.beans.factory.annotation.Required;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
 public class MemberController {
-
     private final MemberService memberService;
 
-    // 회원 가입
-    @PostMapping("/signup")
-    public ResponseDto<?> signup(@RequestBody @Valid SignupReqDto signupReqDto) {
-        return memberService.createAccount(signupReqDto);
-    }
+    //return type 상의후 결정.
+    //여긴 뭔가 연태님 로그인 펑션이라..상의후 결정..
 
-    // 로그인
-    @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody @Valid LoginReqDto loginReqDto) {
-        return memberService.loginAccount(loginReqDto);
-    }
-
-    // 토큰 재발급
-    @PostMapping("/reissue")
-    public ResponseEntity<TokenDto> reissue(@RequestBody TokenRequestDto tokenRequestDto) {
-        System.out.println(tokenRequestDto);
-        return ResponseEntity.ok(memberService.reissue(tokenRequestDto));
-    }
 
 }
