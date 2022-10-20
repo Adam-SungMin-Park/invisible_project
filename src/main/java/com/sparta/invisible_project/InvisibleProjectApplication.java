@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @EnableJpaAuditing
 @SpringBootApplication
+@EnableJpaAuditing
 public class InvisibleProjectApplication {
     public static void main(String[] args) {
         SpringApplication.run(InvisibleProjectApplication.class, args);

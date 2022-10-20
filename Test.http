@@ -1,3 +1,20 @@
+
+POST http://localhost:8080/api/member/signup
+Content-Type: application/json
+
+{
+  "username": "adamSecond",
+  "password": "bin1234"
+}
+
+###
+
+POST http://localhost:8080/api/member/login
+Content-Type: application/json
+
+{
+  "username": "adamSecond",
+
 GET http://localhost:8090/api/issue/token
 Accept: application/json
 Refresh_Token:
@@ -8,10 +25,91 @@ Content-Type: application/json
 
 {
   "email": "wonbin@mail.com",
+
   "password": "bin1234"
 }
 
 ###
+
+
+POST http://localhost:8080/api/auth/boards/post
+Content-Type: application/json
+Access_Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZGFtU2Vjb25kIiwiZXhwIjoxNjY2MzMzOTA4LCJpYXQiOjE2NjYyNDc1MDh9.FR-ByQcUd7Eq7WDcdidXNtybCdxFXiZP_GU8743xqpU
+
+{
+  "content": "  fdsfsdfdsfsd ",
+  "title": "hihihidfdsmlworld"
+}
+
+###
+GET http://localhost:8080/api/auth/boards/1
+Content-Type: application/json
+Access_Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZGFtU2Vjb25kIiwiZXhwIjoxNjY2MzMzODA5LCJpYXQiOjE2NjYyNDc0MDl9.r1FmZqAZITCb0SdO12UHdWI8pqMdXumQZ_cu5jy6ryY
+
+###
+GET http://localhost:8080/api/auth/boards
+Content-Type: application/json
+Access_Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZGFtU2Vjb25kIiwiZXhwIjoxNjY2MzM2MTU0LCJpYXQiOjE2NjYyNDk3NTR9.bgc06N_bcsPFicwxCbgUBT-kG3TJYwfLh4eTZIVhWCQ
+
+###
+
+POST http://localhost:8080/api/auth/board/comment/1
+Content-Type: application/json
+Access_token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZGFtU2Vjb25kIiwiZXhwIjoxNjY2MzM2MTU0LCJpYXQiOjE2NjYyNDk3NTR9.bgc06N_bcsPFicwxCbgUBT-kG3TJYwfLh4eTZIVhWCQ
+
+{
+  "content": "cococooment"
+}
+###
+
+GET http://localhost:8080/api/auth/board/comment
+Content-Type: application/json
+Access_Token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZGFtU2Vjb25kIiwiZXhwIjoxNjY2MjcxMzQ0LCJpYXQiOjE2NjYxODQ5NDR9.vLMmhoBNeSWdRaCoxqKHmDqsePSyEwhPzhy-spnuvbY
+
+
+
+###
+
+
+GET http://localhost:8080/api/issue/token
+Accept: application/json
+Refresh_Token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ3b25iaW4zQGdtYWlsLmNvbSIsImV4cCI6MTY2NjEwMTQzNSwiaWF0IjoxNjY2MDE1MDM1fQ.qoilL1J0v22nDYG7kN-aD665EHUWlIt-nL3PwbUPT-A
+
+###
+POST http://localhost:8080/api/member
+Content-Type: application/json
+
+{
+  "username": "wonbin@mail.com",
+  "password": "bin1234"
+}
+
+###
+
+GET http://localhost:8080/api/auth/boards
+Content-Type: application/json
+Access_Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZGFtU2Vjb25kIiwiZXhwIjoxNjY2MjQ2NTkyLCJpYXQiOjE2NjYxNjAxOTJ9.OnVZUmzEtl_MyIg7hgh-WRLeFkaZZdv5sGE8tKmWEEM
+
+###
+
+DELETE http://localhost:8080/api/auth/boards/delete/1
+Content-Type: application/json
+Access_Token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZGFtU2Vjb25kIiwiZXhwIjoxNjY2MTg3Mjk4LCJpYXQiOjE2NjYxMDA4OTh9._sVp2TPHOXuBu57FcbKbz-KhUw9A6YjNsI4N_4vR_tg
+###
+
+PUT http://localhost:8080/api/auth/boards/update/2
+Content-Type: application/json
+Access_Token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZGFtU2Vjb25kIiwiZXhwIjoxNjY2MjY0NDM0LCJpYXQiOjE2NjYxNzgwMzR9.HDTdREpm8gK4DHnu0Db44E-3WQ620YuvAQ8rZWiqXq4
+
+{
+  "title": "zzzz Title"
+}
+
+###
+POST http://localhost:8080/api/auth/heart/like/1
+Content-Type: application/json
+Access_Token:eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZGFtU2Vjb25kIiwiZXhwIjoxNjY2MzM0MjYxLCJpYXQiOjE2NjYyNDc4NjF9.OyIja8YgLcPfHSSR5w12APxL1pYMdVWOHUBiKYNU9Zo
+
 POST http://localhost:8090/api/account/signup
 Content-Type: application/json
 
@@ -56,3 +154,4 @@ Accept: application/json
 Access_Token:
 
 ###
+
